@@ -1,0 +1,24 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+#    url: ${DB_URL:jdbc:mysql://localhost:3306/skill_bridge}
+    url: jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres
+#    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+    driver-class-name: org.postgresql.Driver
+#    username: ${DB_USERNAME:root}
+    username: postgres.dorgkyojykvizwqqaiwc
+#    password: ${DB_PASSWORD:}
+    password: SkillBridge-DS-Back-End-Laravel & Spring
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+springdoc:
+  api-docs:
+    enabled: false
+
+api:
+  url: http://localhost:8080
+jwt:
+  key: ${JWT_SECRET}
