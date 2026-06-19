@@ -1,127 +1,226 @@
-# 🚀 SkillBridge
+# SkillBridge Architecture & Delivery Phases
 
-<p align="center">
-  <img src="assets/logo.jpg" width="300"/>
-</p>
+## System Landscape
 
-<p align="center">
-  <b>Connect. Learn. Teach. Grow.</b><br/>
-  A modern platform for skill exchange powered by scalable architecture and real-time interaction.
-</p>
+SkillBridge is built as a distributed multi-service platform.
 
----
-
-## ✨ Highlights
-
-- 🔥 Real-time chat system for instant communication  
-- ⚡ Scalable multi-backend architecture (Laravel + Spring Boot)  
-- 🧠 Smart skill-based matching system  
-- 📄 Interactive API documentation using Swagger/OpenAPI  
-- 📊 Admin dashboard with analytics & insights  
+| Component           | Responsibility                                                       |
+| ------------------- | -------------------------------------------------------------------- |
+| React Web           | Web client application                                               |
+| Flutter Mobile      | Mobile client application                                            |
+| Laravel Service     | Core business logic, administration, matching, mentoring workflows   |
+| Spring Boot Service | Real-time communication, chat, notifications, collaboration services |
+| MySQL               | Relational business data                                             |
+| MongoDB             | Conversations, notifications, activity streams                       |
+| REST APIs           | Inter-service communication                                          |
+| Swagger/OpenAPI     | Service contracts and API documentation                              |
+| Jira                | Sprint planning and delivery tracking                                |
+| UI/UX               | User experience design and prototyping                               |
 
 ---
 
-## 🧩 System Architecture
+# Phase 0 — Platform Foundation
 
-SkillBridge is built with a scalable multi-backend architecture:
+Goal: Establish communication between services and secure user management.
 
-- 🎨 **Frontend:** React.js  
-- 🔵 **Backend A:** Laravel (Core System & Admin Logic)  
-- 🟢 **Backend B:** Spring Boot (User Interaction & Real-Time Features)  
+## Epic 0.1 — Authentication
 
----
+| Item           | Acceptance Criteria                                 |
+| -------------- | --------------------------------------------------- |
+| Authentication | Login and registration available across all clients |
+| JWT Security   | Shared authentication strategy across services      |
+| Authorization  | User, Mentor, Admin roles supported                 |
 
-## 🔗 Repositories
+## Epic 0.2 — Service Integration
 
-- 🔵 Core Backend (Laravel)  
-  👉 https://github.com/abdallahsobhymahmdod-cpu/skillbridge-backend-laravel  
+| Item                           | Acceptance Criteria                              |
+| ------------------------------ | ------------------------------------------------ |
+| Laravel ↔ Spring Communication | REST APIs available and documented               |
+| API Contracts                  | Swagger documentation published for all services |
+| Error Handling                 | Standardized response structure implemented      |
 
-- 🎨 Frontend (React)  
-  👉 https://github.com/ahmedsameh-0/skillbridge-frontend-react  
+UI Slice:
 
----
-
-## ✨ Features
-
-### 🔐 Authentication & Users
-- Register & Login  
-- User Profiles & Reviews  
-- Block / Unblock Users  
+* Authentication screens
+* User onboarding
 
 ---
 
-### 🧠 Skills System
-- Full CRUD for Skills  
-- Explore, Search & Filter Skills  
+# Phase 1 — Skills & Matching
+
+Goal: Connect users through intelligent skill discovery.
+
+## Epic 1.1 — Skill Management
+
+| Item               | Acceptance Criteria                          |
+| ------------------ | -------------------------------------------- |
+| Skill CRUD         | Users manage offered and requested skills    |
+| Search & Filtering | Skills discoverable through advanced filters |
+
+## Epic 1.2 — Match Engine
+
+| Item                | Acceptance Criteria                       |
+| ------------------- | ----------------------------------------- |
+| Recommendations     | Suggested matches generated automatically |
+| Ranking Integration | Higher-rated users prioritized            |
+
+UI Slice:
+
+* Skill explorer
+* Match recommendation dashboard
 
 ---
 
-### 🤝 Matching
-- Suggested Matches  
-- Match Details  
-- Smart Pairing Algorithm  
+# Phase 2 — Learning Sessions
+
+Goal: Enable structured mentor-student interactions.
+
+## Epic 2.1 — Session Lifecycle
+
+| Item             | Acceptance Criteria                         |
+| ---------------- | ------------------------------------------- |
+| Session Creation | Users can schedule sessions                 |
+| Session Tracking | Pending, Active, Completed states supported |
+
+## Epic 2.2 — Mentor Workspace
+
+| Item               | Acceptance Criteria              |
+| ------------------ | -------------------------------- |
+| Student Management | Mentors can manage student lists |
+| Progress Tracking  | Session history available        |
+
+UI Slice:
+
+* Mentor dashboard
+* Session management views
 
 ---
 
-### 🗓️ Sessions
-- Pending / Active / Completed Sessions  
-- Session Tracking & Management  
+# Phase 3 — Real-Time Collaboration
+
+Goal: Deliver interactive communication capabilities.
+
+## Epic 3.1 — Chat Service
+
+| Item                | Acceptance Criteria                    |
+| ------------------- | -------------------------------------- |
+| Real-Time Messaging | Instant communication supported        |
+| Message Persistence | Conversation history stored in MongoDB |
+| Synchronization     | Mobile and Web remain synchronized     |
+
+## Epic 3.2 — Notifications
+
+| Item                | Acceptance Criteria                                |
+| ------------------- | -------------------------------------------------- |
+| Event Notifications | Matches, sessions, messages generate notifications |
+| Read Status         | Notification lifecycle tracked                     |
+| Persistence         | Notifications stored and retrievable               |
+
+## Epic 3.3 — Screen Sharing
+
+| Item                  | Acceptance Criteria                        |
+| --------------------- | ------------------------------------------ |
+| Session Collaboration | Participants share screens during sessions |
+| Access Control        | Session owner controls permissions         |
+| Live Streaming        | Real-time screen updates delivered         |
+
+UI Slice:
+
+* Chat interface
+* Notification center
+* Session collaboration tools
 
 ---
 
-### 💬 Chat
-- Conversations  
-- Real-time Messaging  
+# Phase 4 — Community & Reputation
+
+Goal: Build trust and accountability.
+
+## Epic 4.1 — Ranking System
+
+| Item         | Acceptance Criteria             |
+| ------------ | ------------------------------- |
+| Ratings      | Users rate learning experiences |
+| Leaderboards | Rankings generated dynamically  |
+
+## Epic 4.2 — Reports
+
+| Item            | Acceptance Criteria           |
+| --------------- | ----------------------------- |
+| User Reports    | Community reporting available |
+| Report Tracking | Resolution workflow supported |
+
+UI Slice:
+
+* Ranking dashboard
+* Reporting interface
 
 ---
 
-### 📊 Dashboard
-- Total Users  
-- Active Sessions  
-- Daily Matches  
+# Phase 5 — Administration
+
+Goal: Provide operational visibility and moderation.
+
+## Epic 5.1 — User Management
+
+| Item            | Acceptance Criteria                    |
+| --------------- | -------------------------------------- |
+| Active Users    | Logged users visible to administrators |
+| User Moderation | Block and unblock actions available    |
+
+## Epic 5.2 — Trust & Safety
+
+| Item              | Acceptance Criteria             |
+| ----------------- | ------------------------------- |
+| Reports Review    | Admin review workflow available |
+| Rating Moderation | Negative ratings can be removed |
+
+UI Slice:
+
+* Admin console
+* Moderation center
 
 ---
 
-### 🏆 Leaderboard
-- Top Rated Users  
-- Most Active Users  
-- Top Skills  
+# Dependency Overview
+
+```mermaid
+flowchart TB
+
+React[React Web]
+Flutter[Flutter Mobile]
+Laravel[Laravel Service]
+Spring[Spring Boot Service]
+
+MySQL[(MySQL)]
+Mongo[(MongoDB)]
+
+React --> Laravel
+React --> Spring
+
+Flutter --> Laravel
+Flutter --> Spring
+
+Laravel --> MySQL
+Spring --> Mongo
+
+Laravel <--> |REST APIs| Spring
+```
 
 ---
 
-### 📜 Activity Log
-- Track User Actions  
+# Service Traceability
 
----
-
-### ⚙️ Settings
-- Profile Management  
-- Password Control  
-
----
-
-## 📄 API Documentation
-
-Interactive API documentation is available using **Swagger/OpenAPI**, allowing easy testing and exploration of endpoints.
----
-
-## 🗄️ Database Schema
-
-<p align="center">
-<img src="./assets/schema.jpg" width="90%"/>
-</p>
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** React.js  
-- **Backend:** Laravel + Spring Boot  
-- **API:** RESTful APIs + Swagger/OpenAPI  
-- **Database:** MySQL  
-
----
-
-## 💡 Overview
-
-SkillBridge focuses on scalability, modular architecture, and real-time user interaction, making it a strong foundation for future expansion.
+| Domain         | Laravel | Spring Boot | React | Flutter |
+| -------------- | ------- | ----------- | ----- | ------- |
+| Auth           | ✓       | ✓           | ✓     | ✓       |
+| Skills         | ✓       |             | ✓     | ✓       |
+| Matching       | ✓       |             | ✓     | ✓       |
+| Sessions       | ✓       |             | ✓     | ✓       |
+| Chat           |         | ✓           | ✓     | ✓       |
+| Notifications  |         | ✓           | ✓     | ✓       |
+| Screen Sharing |         | ✓           | ✓     | ✓       |
+| Ranking        | ✓       |             | ✓     | ✓       |
+| Reports        | ✓       |             | ✓     | ✓       |
+| Payments       | ✓       |             | ✓     | ✓       |
+| Admin          | ✓       |             | ✓     |         |
