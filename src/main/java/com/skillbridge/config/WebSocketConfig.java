@@ -36,7 +36,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // Secure WebSocket endpoint with allowed origins and JWT validation
         registry.addEndpoint("/ws-chat")
                 .setAllowedOrigins("http://localhost:3000", "http://localhost:4000")
                 .withSockJS();
@@ -44,7 +43,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        // Add JWT interceptor to validate tokens on WebSocket connect
         registration.interceptors(jwtChannelInterceptor);
     }
 }

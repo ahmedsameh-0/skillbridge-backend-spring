@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Component;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Principal;
@@ -28,7 +27,6 @@ public class JwtChannelInterceptor implements ChannelInterceptor {
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
         StompHeaderAccessor accessor = StompHeaderAccessor.wrap(message);
 
-        // Only validate JWT for CONNECT command
         if (StompCommand.CONNECT.equals(accessor.getCommand())) {
             List<String> authHeader = accessor.getNativeHeader("Authorization");
 
@@ -41,21 +39,16 @@ public class JwtChannelInterceptor implements ChannelInterceptor {
                 throw new AccessDeniedException("Invalid authorization header format");
             }
 
-            token = token.substring(7); // Remove "Bearer " prefix
-
+            token = token.substring(7);
             try {
-                // Validate JWT token
                 JwtDecoder jwtDecoder = createJwtDecoder();
                 jwtDecoder.decode(token);
-
-                // Token is valid, set authenticated user for WebSocket session
                 Principal principal = () -> "websocket-user";
                 accessor.setUser(principal);
             } catch (Exception ex) {
                 throw new AccessDeniedException("Invalid JWT token: " + ex.getMessage());
             }
         }
-
         return message;
     }
 
