@@ -1,5 +1,15 @@
 # SkillBridge Architecture & Delivery Phases
 
+## Project Repositories
+
+| Repository | Description |
+|------------|-------------|
+| Backend (Laravel) | https://github.com/abdallahsobhymahmdod-cpu/skillbridge-backend-laravel |
+| Frontend (React) | https://github.com/abdallahsobhymahmdod-cpu/skillbridge-frontend |
+| Mobile (Flutter) | https://github.com/abdallahsobhymahmdod-cpu/skillbridge-app |
+
+---
+
 ## System Landscape
 
 SkillBridge is built as a distributed multi-service platform.
